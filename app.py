@@ -273,5 +273,29 @@ with st.expander("📋 Ver tabla de datos (últimos 20 registros)"):
     st.dataframe(tabla, width="stretch", hide_index=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
+# CONTROL DE BOMBA DE AGUA
+
+st.subheader("💧 Control de bomba de agua")
+
+st.warning("Modo de prueba: todavía no controla la bomba real.")
+
+if "bomba_encendida" not in st.session_state:
+    st.session_state.bomba_encendida = False
+
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("🟢 ENCENDER BOMBA"):
+        st.session_state.bomba_encendida = True
+
+with col2:
+    if st.button("🔴 APAGAR BOMBA"):
+        st.session_state.bomba_encendida = False
+
+if st.session_state.bomba_encendida:
+    st.success("💧 Bomba encendida (simulación)")
+else:
+    st.info("⛔ Bomba apagada (simulación)")
+
 st.divider()
 st.caption("🌱 Sistema de riego automatizado con monitoreo remoto y recomendación asistida por IA — Proyecto de Título, Ingeniería Agrícola.")
